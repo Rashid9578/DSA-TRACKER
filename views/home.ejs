@@ -1,0 +1,47 @@
+<%- include("partials/header") %>
+
+<section class="hero-card">
+  <div>
+    <p class="eyebrow">Striver Sheet Journey</p>
+    <h1>Track your DSA grind in one place.</h1>
+    <p class="hero-copy">
+      Server-rendered with Express and EJS, and your checklist progress is saved in MongoDB.
+    </p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-box">
+      <span>Overall Progress</span>
+      <strong><%= stats.progress %>%</strong>
+    </div>
+    <div class="stat-box">
+      <span>Solved</span>
+      <strong><%= stats.completedQuestions %> / <%= stats.totalQuestions %></strong>
+    </div>
+  </div>
+</section>
+
+<section class="progress-panel">
+  <div class="progress-panel__copy">
+    <h2>Consistency beats intensity</h2>
+    <p>Pick a topic, mark problems complete, and keep the streak alive.</p>
+  </div>
+  <div class="progress-track">
+    <div class="progress-track__fill" style="width: <%= stats.progress %>%"></div>
+  </div>
+</section>
+
+<section class="topic-grid">
+  <% topics.forEach((topic, index) => { %>
+    <a href="/topic/<%= topic.slug %>" class="topic-card topic-card--<%= topic.accent %>">
+      <div class="topic-card__index"><%= String(index + 1).padStart(2, "0") %></div>
+      <h3><%= topic.name %></h3>
+      <p><%= topic.completedCount %> of <%= topic.total %> complete</p>
+      <div class="mini-progress">
+        <div class="mini-progress__fill" style="width: <%= topic.progress %>%"></div>
+      </div>
+      <span class="topic-card__status"><%= topic.done ? "Completed" : `${topic.progress}% done` %></span>
+    </a>
+  <% }) %>
+</section>
+
+<%- include("partials/footer") %>

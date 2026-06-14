@@ -1,0 +1,45 @@
+<%- include("partials/header") %>
+
+<section class="topic-hero topic-hero--<%= topic.accent %>">
+  <div>
+    <a href="/" class="back-link">← Back to dashboard</a>
+    <h1><%= topic.name %></h1>
+    <p><%= topic.completedCount %> of <%= topic.total %> problems complete.</p>
+  </div>
+  <div class="topic-hero__meta">
+    <div class="stat-box">
+      <span>Topic Progress</span>
+      <strong><%= topic.progress %>%</strong>
+    </div>
+    <div class="stat-box">
+      <span>Overall</span>
+      <strong><%= stats.progress %>%</strong>
+    </div>
+  </div>
+</section>
+
+<section class="progress-panel">
+  <div class="progress-track">
+    <div class="progress-track__fill" style="width: <%= topic.progress %>%"></div>
+  </div>
+</section>
+
+<section class="question-list">
+  <% topic.questions.forEach((question, index) => { %>
+    <article class="question-row <%= question.done ? "question-row--done" : "" %>">
+      <div class="question-row__number"><%= index + 1 %></div>
+      <div class="question-row__content">
+        <a href="<%= question.link %>" target="_blank" rel="noreferrer"><%= question.title %></a>
+        <span><%= question.done ? "Completed" : "Incomplete" %></span>
+      </div>
+      <form action="/topic/<%= topic.slug %>/toggle" method="post">
+        <input type="hidden" name="questionId" value="<%= question.id %>" />
+        <button type="submit" class="toggle-btn <%= question.done ? "toggle-btn--done" : "" %>">
+          <%= question.done ? "Undo" : "Mark Done" %>
+        </button>
+      </form>
+    </article>
+  <% }) %>
+</section>
+
+<%- include("partials/footer") %>
