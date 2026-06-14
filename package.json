@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "DSA Tracker rebuilt with Node.js, Express, EJS, and MongoDB.",
   "main": "src/server.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js"

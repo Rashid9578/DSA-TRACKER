@@ -25,6 +25,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/healthz", (req, res) => {
+  res.status(200).json({ ok: true });
+});
+
 app.get("/", async (req, res, next) => {
   try {
     const userKey = ensureUserKey(req, res);

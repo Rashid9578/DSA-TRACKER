@@ -47,3 +47,32 @@ npm run dev
 
 - Progress is stored per browser using the `dsaTrackerUser` cookie.
 - If you want authentication or multi-user accounts next, we can layer that on cleanly.
+
+## Deploy On Render
+
+1. Push this project to GitHub.
+2. Create a new Render `Web Service` from the repo.
+3. Render can use [render.yaml](/c:/DSA-TRACKER/render.yaml), or you can set these manually:
+
+```text
+Build Command: npm install
+Start Command: npm start
+```
+
+4. Add environment variable:
+
+```text
+MONGODB_URI=<your mongodb atlas connection string>
+```
+
+5. Deploy and open:
+
+```text
+https://<your-service>.onrender.com
+```
+
+6. Optional health check path:
+
+```text
+/healthz
+```
