@@ -59,6 +59,11 @@ img {
   color: inherit;
 }
 
+.tip-toggle span {
+  color: #1f2937;
+  font-weight: 700;
+}
+
 .tip-toggle img {
   width: 2rem;
   height: 2rem;
